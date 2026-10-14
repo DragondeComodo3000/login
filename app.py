@@ -29,6 +29,7 @@ def connect(db_path=DB_PATH):
 
 
 def password_hash(password, salt=None):
+    # Una sal distinta por usuario evita que contraseñas iguales generen hashes iguales.
     salt = salt or secrets.token_bytes(16)
     digest = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 200_000)
     return f"{salt.hex()}:{digest.hex()}"
@@ -77,10 +78,9 @@ def authenticate(email, password, db_path=DB_PATH):
         return None
     db = connect(db_path)
     try:
-        user = db.execute("SELECT * FROM users WHERE email = ?", (email.strip(),)).fetchone()
-        if user is None:
+        user = db.execute("SELECT * FROM users WHERE email = ?", (email.strip().lower(),)).fetchone()
+        if user is None or not check_password(password, user["password_hash"]):
             return None
-        # Ejercicio: las pruebas del proyecto señalan las reglas pendientes.
         return dict(user)
     finally:
         db.close()
@@ -108,20 +108,24 @@ def get_profile(token, db_path=DB_PATH):
         row = db.execute("""
             SELECT users.id, users.name, users.email, users.role
             FROM sessions JOIN users ON users.id = sessions.user_id
-            WHERE sessions.token = ?
-        """, (token,)).fetchone()
+            WHERE sessions.token = ? AND sessions.expires_at > ?
+        """, (token, int(time.time()))).fetchone()
         if row is None:
             return None
-        profile = dict(row)
-        profile["role"] = "miembro"
-        return profile
+        return dict(row)
     finally:
         db.close()
 
 
 def logout(token, db_path=DB_PATH):
-    # El cierre de sesión forma parte del ejercicio de depuración.
-    return None
+    if not token:
+        return
+    db = connect(db_path)
+    try:
+        with db:
+            db.execute("DELETE FROM sessions WHERE token = ?", (token,))
+    finally:
+        db.close()
 
 
 class Handler(BaseHTTPRequestHandler):

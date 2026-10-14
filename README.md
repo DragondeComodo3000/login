@@ -19,15 +19,15 @@ La base de datos se guarda en `data/login.sqlite3` y no se incluye en Git. Puede
 
 ## Ejercicio de depuración
 
-El código contiene **cinco errores intencionales**. Las cinco pruebas están diseñadas para fallar inicialmente, una por cada regla incumplida. Ejecuta:
+Este proyecto se usó para practicar la corrección de **cinco errores intencionales**. Las cinco pruebas documentan las reglas que ahora debe cumplir el código. Ejecuta:
 
 ```bash
 python -B -m unittest discover -s tests -v
 ```
 
-Corrige `app.py` hasta obtener cinco pruebas aprobadas. No modifiques `tests/test_login.py` para resolverlas. Las pruebas cubren autenticación, perfil y sesiones.
+Las cinco pruebas deben aprobar. Cubren autenticación, perfil y sesiones.
 
-GitHub Actions también ejecuta las cinco pruebas en cada push y pull request mediante `.github/workflows/tests.yml`. El workflow aparece en rojo inicialmente porque los cinco fallos son parte del ejercicio.
+GitHub Actions también ejecuta las cinco pruebas en cada push y pull request mediante `.github/workflows/tests.yml`.
 
 El archivo `hooks/pre-push` ejecuta esas pruebas y bloquea un `git push` cuando fallan. Puedes probarlo directamente con `python hooks/pre-push`. Si este directorio forma parte de un repositorio Git, actívalo desde `login` en Git Bash con:
 
@@ -35,6 +35,8 @@ El archivo `hooks/pre-push` ejecuta esas pruebas y bloquea un `git push` cuando 
 git config core.hooksPath "$(pwd)/hooks"
 ```
 
+Antes de confirmar el hook en Git, registra su permiso de ejecución con `git update-index --chmod=+x hooks/pre-push` para que también funcione después de clonar el repositorio.
+
 En Windows, con Git Bash, este hook usa `python3` del entorno. Si Python solo está disponible como `python`, ajusta el intérprete de la primera línea antes de activarlo. Este hook pertenece a este proyecto; los hooks de `hooksLocal` verifican el proyecto `proyecto-demo` de ese otro directorio.
 
-**Uso:** esta demo incluye credenciales públicas y fallos deliberados. Úsala solo en local para el ejercicio.
+**Uso:** esta demo incluye credenciales públicas. Úsala solo en local para el ejercicio.
