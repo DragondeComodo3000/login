@@ -27,6 +27,8 @@ python -B -m unittest discover -s tests -v
 
 Corrige `app.py` hasta obtener cinco pruebas aprobadas. No modifiques `tests/test_login.py` para resolverlas. Las pruebas cubren autenticación, perfil y sesiones.
 
+GitHub Actions también ejecuta las cinco pruebas en cada push y pull request mediante `.github/workflows/tests.yml`. El workflow aparece en rojo inicialmente porque los cinco fallos son parte del ejercicio.
+
 El archivo `hooks/pre-push` ejecuta esas pruebas y bloquea un `git push` cuando fallan. Puedes probarlo directamente con `python hooks/pre-push`. Si este directorio forma parte de un repositorio Git, actívalo desde `login` en Git Bash con:
 
 ```bash
