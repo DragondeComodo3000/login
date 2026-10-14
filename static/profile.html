@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi perfil · Atlas</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body data-page="profile">
+  <div class="profile-shell">
+    <header class="profile-header"><a href="/" class="brand"><span class="brand-mark">✦</span> Atlas <span class="brand-suffix">/ espacio personal</span></a><button id="logout" class="logout-button">Cerrar sesión ↗</button></header>
+    <main class="profile-main">
+      <div class="profile-kicker"><span class="status-dot"></span> TU ESPACIO PERSONAL <span>02 / 02</span></div>
+      <h1>Un espacio<br><em>todo tuyo.</em></h1>
+      <p class="profile-lead">Aquí encontrarás los detalles de tu cuenta.</p>
+      <section class="profile-card" aria-label="Información de perfil">
+        <div class="card-top"><span>PERFIL DE USUARIO</span><span class="card-symbol">✦</span></div>
+        <div class="avatar" id="avatar">··</div>
+        <h2 id="profile-name">Cargando perfil…</h2>
+        <p id="profile-email" class="email-text"></p>
+        <div class="divider"></div>
+        <div class="detail-row"><span>Identificador</span><strong id="profile-id">—</strong></div>
+        <div class="detail-row"><span>Rol</span><strong id="profile-role">—</strong></div>
+        <div class="detail-row"><span>Estado</span><strong class="active">Activo ●</strong></div>
+      </section>
+      <p id="message" class="message" role="alert" aria-live="polite"></p>
+    </main>
+    <footer class="profile-footer">ATLAS © 2026 <span>HECHO PARA VOLVER</span></footer>
+  </div>
+</body>
+</html>

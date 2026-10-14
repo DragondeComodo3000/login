@@ -1,0 +1,17 @@
+#!/usr/bin/env python3
+"""Bloquea el push si las cinco pruebas de la demo fallan."""
+
+import subprocess
+import sys
+from pathlib import Path
+
+
+root = Path(__file__).resolve().parents[1]
+result = subprocess.run(
+    [sys.executable, "-B", "-m", "unittest", "discover", "-s", "tests", "-v"],
+    cwd=root,
+    check=False,
+)
+if result.returncode:
+    print("Push bloqueado: corrige app.py y vuelve a ejecutar las cinco pruebas.", file=sys.stderr)
+sys.exit(result.returncode)

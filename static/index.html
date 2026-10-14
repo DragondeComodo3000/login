@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acceder · Atlas</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body data-page="login">
+  <main class="layout">
+    <section class="intro" aria-label="Presentación">
+      <div class="brand"><span class="brand-mark">✦</span> Atlas <span class="brand-suffix">/ espacio personal</span></div>
+      <div class="intro-copy">
+        <div class="eyebrow">TU ESPACIO, A UN CLIC</div>
+        <h1>Todo empieza<br>con una <em>conexión.</em></h1>
+        <p>Entra a tu cuenta y descubre tu perfil en un espacio creado para ti.</p>
+      </div>
+      <div class="intro-bottom"><span class="orb orb-one"></span><span class="orb orb-two"></span><span class="grid-decoration"></span><span class="intro-caption">Un lugar para volver.</span></div>
+    </section>
+    <section class="panel">
+      <div class="panel-top"><span class="pill"><span class="status-dot"></span> ACCESO SEGURO</span><span class="step">01 / 02</span></div>
+      <div class="form-wrap">
+        <div class="form-icon">↗</div>
+        <p class="overline">BIENVENIDO DE NUEVO</p>
+        <h2>Inicia sesión</h2>
+        <p class="subheading">Ingresa tus datos para continuar.</p>
+        <form id="login-form">
+          <label for="email">Correo electrónico</label>
+          <input id="email" name="email" type="email" placeholder="tu@correo.com" autocomplete="username" required>
+          <label for="password">Contraseña</label>
+          <div class="password-field"><input id="password" name="password" type="password" placeholder="Tu contraseña" autocomplete="current-password" required><button class="eye-button" type="button" id="toggle-password" aria-label="Mostrar contraseña">◉</button></div>
+          <p id="message" class="message" role="alert" aria-live="polite"></p>
+          <button class="primary-button" type="submit">Entrar a mi cuenta <span>↗</span></button>
+        </form>
+        <div class="demo-box"><strong>Accesos de prueba</strong><span>Ana · ana@demo.local / AnaDemo123!</span><span>Luis · luis@demo.local / LuisDemo123!</span></div>
+      </div>
+      <p class="footer-note">DEMO LOCAL · ATLAS © 2026</p>
+    </section>
+  </main>
+</body>
+</html>
